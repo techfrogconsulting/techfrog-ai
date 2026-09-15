@@ -1,0 +1,499 @@
+{
+  "version": 1,
+  "updated": "2026-09-15",
+  "assistant": {
+    "name": "TechFrog.AI",
+    "greeting": "Ask me about Tech Frog Consulting’s services, process, systems, pricing, industries, or availability.",
+    "out_of_scope": "I only answer questions about Tech Frog Consulting. Ask about its services, workflow audits, industries, systems, security approach, pricing, availability, or how to get in touch."
+  },
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Business overview",
+      "aliases": [
+        "tech frog consulting",
+        "what do you do",
+        "what does tech frog do",
+        "tell me about tech frog",
+        "tell me about the company",
+        "what kind of business",
+        "business overview"
+      ],
+      "keywords": [
+        "business",
+        "company",
+        "consultancy",
+        "consulting",
+        "operational infrastructure",
+        "small firms"
+      ],
+      "answer": "Tech Frog Consulting LLC designs and builds operational systems for small firms. Its work combines workflow engineering, applied AI with review gates, reliable automation, practical cybersecurity, custom internal software, and structured research systems. Engagements are scoped in writing, built to be checked, and documented so the client owns the result."
+    },
+    {
+      "id": "services",
+      "title": "Services",
+      "aliases": [
+        "services",
+        "what services",
+        "services offered",
+        "service list",
+        "how can you help",
+        "what can you build",
+        "capabilities"
+      ],
+      "keywords": [
+        "services",
+        "workflow",
+        "automation",
+        "cybersecurity",
+        "software",
+        "research",
+        "applied ai"
+      ],
+      "answer": "Tech Frog works across six connected disciplines: workflow engineering, applied AI, automation systems, security posture, custom software, and structured research systems. The common standard is named ownership, visible failure states, human review where consequences matter, monitoring, and usable documentation."
+    },
+    {
+      "id": "workflow_engineering",
+      "title": "Workflow engineering",
+      "aliases": [
+        "workflow engineering",
+        "fix our workflow",
+        "process mapping",
+        "handoff problems",
+        "undocumented process",
+        "work gets stuck"
+      ],
+      "keywords": [
+        "workflow",
+        "process",
+        "handoff",
+        "approval",
+        "filing",
+        "owner",
+        "failure state",
+        "escalation"
+      ],
+      "answer": "Workflow engineering starts by mapping how work actually moves through intake, handoffs, approvals, and filing. Tech Frog then rebuilds the path with named owners, explicit states, failure handling, escalation rules, and documentation a new hire can follow."
+    },
+    {
+      "id": "applied_ai",
+      "title": "Applied AI",
+      "aliases": [
+        "applied ai",
+        "ai services",
+        "use ai",
+        "ai automation",
+        "ai guardrails",
+        "keep ai accurate",
+        "ai being wrong"
+      ],
+      "keywords": [
+        "ai",
+        "language model",
+        "drafting",
+        "summarization",
+        "extraction",
+        "classification",
+        "review gate",
+        "verification"
+      ],
+      "answer": "Tech Frog puts language models inside controlled workflows for drafting, summarization, extraction, and classification. Outputs pass verification and human review before consequential action, and material steps are logged. The control comes from the workflow architecture—not from trusting a model’s tone."
+    },
+    {
+      "id": "automation",
+      "title": "Automation systems",
+      "aliases": [
+        "automation",
+        "automation systems",
+        "automate repetitive work",
+        "connect our software",
+        "tools do not talk",
+        "scheduled jobs",
+        "integration work"
+      ],
+      "keywords": [
+        "automation",
+        "integration",
+        "pipeline",
+        "scheduled",
+        "repetitive",
+        "monitoring",
+        "software tools"
+      ],
+      "answer": "Tech Frog builds scheduled jobs, integrations, and pipelines that remove repetitive work and connect software a firm already uses. Automations are monitored, documented, and designed so failures surface before clients notice them."
+    },
+    {
+      "id": "security",
+      "title": "Security posture",
+      "aliases": [
+        "security",
+        "security services",
+        "cybersecurity",
+        "security posture",
+        "security baseline",
+        "security questionnaire",
+        "protect our firm"
+      ],
+      "keywords": [
+        "security",
+        "identity",
+        "email",
+        "endpoint",
+        "backup",
+        "policy",
+        "mfa",
+        "least privilege"
+      ],
+      "answer": "Security work is sized for small firms and begins with identity, email, endpoints, backups, least-privilege access, MFA, and written policy. The goal is a defensible baseline that matches the firm’s actual risk—not enterprise theater."
+    },
+    {
+      "id": "custom_software",
+      "title": "Custom software",
+      "aliases": [
+        "custom software",
+        "internal tool",
+        "build a crm",
+        "build a dashboard",
+        "intake system",
+        "software ownership"
+      ],
+      "keywords": [
+        "custom",
+        "software",
+        "internal",
+        "crm",
+        "dashboard",
+        "intake",
+        "source code",
+        "training"
+      ],
+      "answer": "Tech Frog builds focused internal tools when off-the-shelf software does not fit, including intake systems, CRMs, and operational dashboards. The software is typed, tested, documented, handed over with training, and owned by the client."
+    },
+    {
+      "id": "research_systems",
+      "title": "Research systems",
+      "aliases": [
+        "research systems",
+        "osint",
+        "open source research",
+        "investor research",
+        "due diligence",
+        "source verification"
+      ],
+      "keywords": [
+        "research",
+        "osint",
+        "diligence",
+        "source",
+        "citation",
+        "provenance",
+        "verification",
+        "chain of custody"
+      ],
+      "answer": "Tech Frog builds repeatable open-source research systems with documented sourcing, verification, provenance, and a chain of custody. The emphasis is on a process that can be rerun and audited, not an unsupported one-off report."
+    },
+    {
+      "id": "industries",
+      "title": "Industries served",
+      "aliases": [
+        "industries",
+        "who do you work with",
+        "industries served",
+        "ideal client",
+        "law firms",
+        "msp",
+        "hvac",
+        "professional services",
+        "founders"
+      ],
+      "keywords": [
+        "industry",
+        "client",
+        "law firm",
+        "attorney",
+        "msp",
+        "hvac",
+        "field service",
+        "professional service",
+        "founder",
+        "solo operator"
+      ],
+      "answer": "Tech Frog is built for small firms with real operational stakes. Its stated focus includes law firms, MSPs, HVAC and field-service companies, professional-services firms, founders, and solo operators. Law firms are the primary focus."
+    },
+    {
+      "id": "workflow_audit",
+      "title": "Workflow audit",
+      "aliases": [
+        "workflow audit",
+        "what is an audit",
+        "start an engagement",
+        "first step",
+        "audit deliverables",
+        "90 day plan"
+      ],
+      "keywords": [
+        "audit",
+        "current state",
+        "process map",
+        "prioritized fixes",
+        "effort estimates",
+        "security baseline",
+        "90 day build plan"
+      ],
+      "answer": "Every engagement starts with a fixed-fee, fixed-scope workflow audit. It produces a current-state process map, a prioritized fix list with effort estimates, a security-baseline check, and a sequenced and priced 90-day build plan. The client keeps the document whether or not Tech Frog performs the build."
+    },
+    {
+      "id": "method",
+      "title": "Working method",
+      "aliases": [
+        "method",
+        "how do you work",
+        "how engagements work",
+        "your process",
+        "working method",
+        "project steps",
+        "engagement process",
+        "how projects run"
+      ],
+      "keywords": [
+        "method",
+        "map",
+        "design",
+        "build",
+        "verify",
+        "document",
+        "maintain",
+        "process"
+      ],
+      "answer": "The sequence is Map, Design, Build, Verify, Document, and Maintain. Tech Frog does not build before mapping the real workflow, and it does not hand over before producing runbooks, architecture notes, and training. If a system cannot be verified, it does not ship."
+    },
+    {
+      "id": "pricing",
+      "title": "Pricing",
+      "aliases": [
+        "pricing",
+        "price",
+        "cost",
+        "how much",
+        "hourly billing",
+        "care plan"
+      ],
+      "keywords": [
+        "fee",
+        "fixed fee",
+        "fixed scope",
+        "monthly",
+        "billing",
+        "retainer",
+        "1200"
+      ],
+      "answer": "Workflow audits are fixed-fee, builds are fixed-scope, and ongoing care plans start at $1,200 per month. Tech Frog does not use hourly billing. A reliable build price requires the workflow to be mapped and scoped first."
+    },
+    {
+      "id": "privacy",
+      "title": "Data handling",
+      "aliases": [
+        "privacy",
+        "data privacy",
+        "train on our data",
+        "train on my data",
+        "data used for training",
+        "client data",
+        "zero retention",
+        "keep data private"
+      ],
+      "keywords": [
+        "privacy",
+        "data",
+        "training",
+        "retention",
+        "confidential",
+        "privilege",
+        "local inference",
+        "on premise"
+      ],
+      "answer": "Tech Frog states that client data is not used to train AI models. Cloud AI work uses zero-retention API configurations where applicable, while local-first systems can run on hardware inside the client’s office. The intended data boundary is defined as part of the system design."
+    },
+    {
+      "id": "ownership",
+      "title": "Client ownership",
+      "aliases": [
+        "ownership",
+        "who owns the code",
+        "client owns",
+        "resell software",
+        "resell hardware",
+        "sell hardware",
+        "vendor lock in",
+        "licenses and credentials"
+      ],
+      "keywords": [
+        "ownership",
+        "code",
+        "documentation",
+        "credentials",
+        "license",
+        "resell",
+        "hardware",
+        "vendor"
+      ],
+      "answer": "The client owns the code, documentation, licenses, and credentials. Tech Frog does not add margins to third-party software or hardware. Systems are designed to reduce vendor lock-in, including the ability to change AI providers without rebuilding the underlying workflow."
+    },
+    {
+      "id": "availability",
+      "title": "Availability",
+      "aliases": [
+        "when can you start",
+        "availability",
+        "booking",
+        "schedule an engagement",
+        "new engagements",
+        "q4 2026"
+      ],
+      "keywords": [
+        "start date",
+        "schedule",
+        "calendar",
+        "consultation",
+        "engagement",
+        "open"
+      ],
+      "answer": "New client engagements are scheduled to open in Q4 2026. Consultations and workflow-audit scheduling are being accepted for that window."
+    },
+    {
+      "id": "location",
+      "title": "Location and delivery",
+      "aliases": [
+        "location",
+        "where are you located",
+        "where are you based",
+        "where do you work",
+        "remote work",
+        "remote",
+        "service area",
+        "where do you serve",
+        "on site",
+        "onsite"
+      ],
+      "keywords": [
+        "location",
+        "austin",
+        "texas",
+        "remote",
+        "onsite",
+        "travel",
+        "client operates"
+      ],
+      "answer": "Tech Frog Consulting is based in Austin, Texas, and works with clients wherever they operate. Most engagements run remotely; on-site time is scheduled when the build requires it."
+    },
+    {
+      "id": "founder",
+      "title": "Founder",
+      "aliases": [
+        "founder",
+        "who founded",
+        "who founded tech frog",
+        "who is the founder",
+        "grayson griffin",
+        "who runs the company",
+        "about the founder"
+      ],
+      "keywords": [
+        "founder",
+        "grayson",
+        "griffin",
+        "systems architect",
+        "msp owner",
+        "credentials",
+        "certifications"
+      ],
+      "answer": "Tech Frog Consulting was founded by Grayson Griffin, a technology entrepreneur, systems architect, former MSP owner-operator, and creator of ArgosOS. The firm’s published credentials include IAPP AIGP, AWS Certified AI Practitioner, Microsoft Azure AI-900, and CompTIA Security+."
+    },
+    {
+      "id": "argos",
+      "title": "ArgosOS",
+      "aliases": [
+        "argos",
+        "argos os",
+        "argos system",
+        "law firm operating system",
+        "collections system",
+        "audit chain"
+      ],
+      "keywords": [
+        "argos",
+        "law firm",
+        "intake",
+        "crm",
+        "collections",
+        "audit",
+        "verification engine",
+        "hash chain"
+      ],
+      "answer": "ArgosOS is Tech Frog’s internal operating system for small law firms, combining intake, CRM, collections, verification, and audit controls. Its design includes typed claims, human gates, an explicit collections state machine, and a SHA-256 hash-chained audit log."
+    },
+    {
+      "id": "sidebar",
+      "title": "Sidebar",
+      "aliases": [
+        "sidebar",
+        "local ai appliance",
+        "on premise ai",
+        "office ai",
+        "law firm ai appliance",
+        "no cloud dependency"
+      ],
+      "keywords": [
+        "sidebar",
+        "local first",
+        "on premise",
+        "law firm",
+        "matter files",
+        "local inference",
+        "hardware",
+        "privilege"
+      ],
+      "answer": "Sidebar is a pre-release, local-first AI appliance for law firms. Core inference runs on hardware in the client’s office so matter files do not need to leave the building. The stated target availability is Q4 2026."
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "aliases": [
+        "contact",
+        "email",
+        "get in touch",
+        "book a consultation",
+        "request a consultation",
+        "schedule an audit"
+      ],
+      "keywords": [
+        "contact",
+        "email",
+        "consultation",
+        "schedule",
+        "support"
+      ],
+      "answer": "To start a conversation, email support@techfrogconsulting.com with two short paragraphs: what your firm does, and the process costing it the most. Tech Frog will respond with whether the work is a fit and what a workflow audit would cover."
+    },
+    {
+      "id": "chatbot",
+      "title": "About this chatbot",
+      "aliases": [
+        "are you ai",
+        "is this ai",
+        "how does this chatbot work",
+        "what can you answer",
+        "what do you know",
+        "are you a real person"
+      ],
+      "keywords": [
+        "chatbot",
+        "assistant",
+        "knowledge file",
+        "automated answer",
+        "scope"
+      ],
+      "answer": "This is a local business-information chatbot, not a general-purpose AI. It matches questions against an approved Tech Frog knowledge file and returns only stored answers. It does not send prompts to an outside service."
+    }
+  ]
+}

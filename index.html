@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#020504">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Ask TechFrog.AI about Tech Frog Consulting.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="TechFrog.AI">
+  <meta property="og:description" content="Direct answers about Tech Frog Consulting.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://techfrog.ai/assets/techfrog-ai.jpg">
+  <link rel="canonical" href="https://techfrog.ai/">
+  <link rel="icon" type="image/jpeg" href="./assets/techfrog-ai.jpg">
+  <title>TechFrog.AI</title>
+  <style>
+    :root {
+      --black: #020504;
+      --surface: #09100e;
+      --line: rgba(180, 205, 197, .18);
+      --line-strong: rgba(56, 245, 220, .46);
+      --text: #edf5f2;
+      --muted: #80918c;
+      --aqua: #26eed5;
+      --danger: #ff9f92;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body { height: 100%; }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 38%, rgba(38, 238, 213, .065), transparent 29rem),
+        linear-gradient(rgba(255, 255, 255, .014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .014) 1px, transparent 1px),
+        var(--black);
+      background-size: auto, 38px 38px, 38px 38px, auto;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    textarea { font: inherit; }
+
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .app {
+      width: min(920px, 100%);
+      height: 100vh;
+      height: 100svh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      position: relative;
+    }
+
+    .conversation {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .brand-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: clamp(24px, 6vh, 70px) 16px 8px;
+      transition: flex-basis .28s ease, padding .28s ease;
+    }
+
+    .brand-image {
+      display: block;
+      width: min(760px, 88vw);
+      max-height: 56vh;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 22px rgba(38, 238, 213, .06));
+      user-select: none;
+      transition: width .28s ease, opacity .28s ease, filter .28s ease;
+    }
+
+    .messages {
+      display: none;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 8px clamp(15px, 4vw, 42px) 18px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(126, 160, 149, .32) transparent;
+    }
+
+    body.chatting .brand-stage {
+      flex: 0 0 118px;
+      place-items: end start;
+      padding: 18px clamp(16px, 4vw, 42px) 8px;
+    }
+
+    body.chatting .brand-image {
+      width: 244px;
+      max-height: 92px;
+      opacity: .88;
+      filter: drop-shadow(0 0 14px rgba(38, 238, 213, .04));
+    }
+
+    body.chatting .messages { display: block; }
+
+    .message {
+      display: flex;
+      margin: 0 0 20px;
+      animation: arrive .2s ease-out both;
+    }
+
+    .message.user { justify-content: flex-end; }
+
+    .bubble {
+      width: fit-content;
+      max-width: min(720px, 88%);
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px 15px 15px 4px;
+      background: rgba(12, 20, 18, .72);
+      color: #dfe9e5;
+      font-size: .98rem;
+      line-height: 1.62;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .message.user .bubble {
+      border-color: rgba(38, 238, 213, .25);
+      border-radius: 15px 15px 4px 15px;
+      background: rgba(38, 238, 213, .09);
+      color: var(--text);
+    }
+
+    .message.error .bubble {
+      border-color: rgba(255, 159, 146, .28);
+      color: var(--danger);
+    }
+
+    .typing {
+      min-width: 34px;
+      min-height: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .typing i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--aqua);
+      opacity: .3;
+      animation: pulse 1.05s infinite ease-in-out;
+    }
+
+    .typing i:nth-child(2) { animation-delay: .14s; }
+    .typing i:nth-child(3) { animation-delay: .28s; }
+
+    .composer-zone {
+      padding: 10px clamp(12px, 3.8vw, 36px) calc(18px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent, rgba(2, 5, 4, .86) 18%, var(--black) 58%);
+    }
+
+    .composer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 44px;
+      align-items: end;
+      gap: 8px;
+      padding: 9px 9px 9px 16px;
+      border: 1px solid rgba(180, 205, 197, .28);
+      border-radius: 18px;
+      background: rgba(9, 16, 14, .94);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .38);
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .composer:focus-within {
+      border-color: var(--line-strong);
+      box-shadow: 0 0 0 3px rgba(38, 238, 213, .07), 0 22px 70px rgba(0, 0, 0, .38);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      max-height: 150px;
+      resize: none;
+      overflow-y: auto;
+      border: 0;
+      outline: 0;
+      padding: 10px 0 8px;
+      background: transparent;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    textarea::placeholder { color: #687974; }
+
+    .send,
+    .new-chat {
+      border: 1px solid transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: #02100d;
+      background: var(--aqua);
+      transition: transform .16s ease, background .16s ease, opacity .16s ease;
+    }
+
+    .send {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+    }
+
+    .send svg,
+    .new-chat svg { width: 19px; height: 19px; }
+
+    .send:hover:not(:disabled),
+    .send:focus-visible:not(:disabled),
+    .new-chat:hover:not(:disabled),
+    .new-chat:focus-visible:not(:disabled) {
+      background: #8bffef;
+      transform: translateY(-1px);
+    }
+
+    .send:disabled,
+    .new-chat:disabled { cursor: wait; opacity: .38; }
+
+    .disclosure {
+      margin: 8px 5px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .75rem;
+      line-height: 1.35;
+    }
+
+    .new-chat {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 3;
+      top: calc(16px + env(safe-area-inset-top));
+      right: clamp(14px, 3vw, 30px);
+      visibility: hidden;
+      opacity: 0;
+      color: #a8bbb5;
+      border-color: var(--line);
+      background: rgba(9, 16, 14, .78);
+      backdrop-filter: blur(12px);
+    }
+
+    body.chatting .new-chat { visibility: visible; opacity: 1; }
+
+    .sr-only {
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--aqua);
+      outline-offset: 3px;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .24; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    @media (max-width: 620px) {
+      .brand-stage { padding-inline: 8px; }
+      .brand-image { width: min(760px, 97vw); }
+      body.chatting .brand-stage { flex-basis: 92px; padding: 14px 14px 5px; }
+      body.chatting .brand-image { width: 188px; max-height: 72px; }
+      .messages { padding: 8px 13px 12px; }
+      .message { margin-bottom: 15px; }
+      .bubble { max-width: 92%; padding: 12px 13px; font-size: .94rem; line-height: 1.56; }
+      .composer-zone { padding-inline: 9px; padding-bottom: calc(11px + env(safe-area-inset-bottom)); }
+      .composer { padding-left: 13px; border-radius: 16px; }
+      .disclosure { font-size: .7rem; }
+      .new-chat { top: calc(13px + env(safe-area-inset-top)); right: 12px; }
+    }
+
+    @media (max-height: 620px) and (min-width: 621px) {
+      .brand-image { width: min(620px, 74vw); max-height: 47vh; }
+      body.chatting .brand-stage { flex-basis: 82px; }
+      body.chatting .brand-image { width: 190px; max-height: 64px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <button class="new-chat" id="newChatButton" type="button" aria-label="Start a new chat" title="New chat">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20 11a8 8 0 1 1-2.34-5.66L20 7.7M20 3v4.7h-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <section class="conversation" aria-label="TechFrog.AI business information chat">
+      <div class="brand-stage">
+        <img class="brand-image" src="./assets/techfrog-ai.jpg" alt="TechFrog.AI" width="1536" height="768" draggable="false">
+      </div>
+      <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions text"></div>
+    </section>
+
+    <div class="composer-zone">
+      <form class="composer" id="chatForm" autocomplete="off" aria-busy="true">
+        <label class="sr-only" for="question">Ask about Tech Frog Consulting</label>
+        <textarea id="question" name="question" rows="1" maxlength="800" placeholder="Ask about Tech Frog…" aria-describedby="disclosure" enterkeyhint="send"></textarea>
+        <button class="send" id="sendButton" type="submit" aria-label="Send message" disabled>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 19V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+      <p class="disclosure" id="disclosure">Business questions only · No login or external AI service</p>
+      <p class="sr-only" id="serviceStatus" role="status" aria-live="polite">Loading business information</p>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const form = document.getElementById('chatForm');
+      const input = document.getElementById('question');
+      const messages = document.getElementById('messages');
+      const sendButton = document.getElementById('sendButton');
+      const newChatButton = document.getElementById('newChatButton');
+      const disclosure = document.getElementById('disclosure');
+      const serviceStatus = document.getElementById('serviceStatus');
+      const stopWords = new Set([
+        'a', 'about', 'an', 'and', 'are', 'as', 'at', 'be', 'can', 'do', 'does', 'for', 'from',
+        'how', 'i', 'in', 'is', 'it', 'me', 'my', 'of', 'on', 'or', 'our', 'the', 'to', 'what',
+        'when', 'where', 'which', 'who', 'with', 'you', 'your'
+      ]);
+      const wordRoots = {
+        'automate': 'automation', 'automated': 'automation', 'automating': 'automation',
+        'businesses': 'business', 'clients': 'client', 'companies': 'company',
+        'consultants': 'consulting', 'consultancy': 'consulting',
+        'firms': 'firm', 'founders': 'founder', 'integrations': 'integration',
+        'services': 'service', 'systems': 'system', 'workflows': 'workflow'
+      };
+      let knowledge = null;
+      let busy = false;
+
+      function normalize(value) {
+        return String(value || '')
+          .toLowerCase()
+          .normalize('NFKD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9@.$]+/g, ' ')
+          .trim()
+          .replace(/\s+/g, ' ');
+      }
+
+      function tokenize(value) {
+        return normalize(value)
+          .split(' ')
+          .filter(word => word.length > 1 && !stopWords.has(word))
+          .map(word => wordRoots[word] || word.replace(/s$/, ''));
+      }
+
+      function scrollToLatest() {
+        requestAnimationFrame(() => {
+          messages.scrollTop = messages.scrollHeight;
+        });
+      }
+
+      function addMessage(role, text = '', pending = false) {
+        document.body.classList.add('chatting');
+        const row = document.createElement('article');
+        row.className = `message ${role}`;
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+
+        if (pending) {
+          const typing = document.createElement('span');
+          typing.className = 'typing';
+          typing.setAttribute('aria-label', 'TechFrog.AI is finding an answer');
+          for (let index = 0; index < 3; index += 1) typing.appendChild(document.createElement('i'));
+          bubble.appendChild(typing);
+        } else {
+          bubble.textContent = text;
+        }
+
+        row.appendChild(bubble);
+        messages.appendChild(row);
+        scrollToLatest();
+        return { row, bubble };
+      }
+
+      function setBusy(next, status = next ? 'Finding an answer' : 'Ready') {
+        busy = next;
+        sendButton.disabled = next || !knowledge;
+        newChatButton.disabled = next;
+        form.setAttribute('aria-busy', String(next));
+        serviceStatus.textContent = status;
+      }
+
+      function resizeInput() {
+        input.style.height = 'auto';
+        input.style.height = `${Math.min(input.scrollHeight, 150)}px`;
+      }
+
+      function scoreEntry(question, entry) {
+        const normalizedQuestion = normalize(question);
+        const questionTokens = new Set(tokenize(question));
+        const entryTokens = new Set(tokenize([entry.title, ...entry.keywords].join(' ')));
+        let score = 0;
+        let phraseMatch = false;
+
+        for (const rawAlias of entry.aliases) {
+          const alias = normalize(rawAlias);
+          if (!alias || !normalizedQuestion.includes(alias)) continue;
+          phraseMatch = true;
+          score += alias.includes(' ') ? 11 : 7;
+        }
+
+        let overlap = 0;
+        for (const token of questionTokens) {
+          if (entryTokens.has(token)) overlap += 1;
+        }
+        score += overlap * 3;
+
+        return { entry, score, phraseMatch, overlap };
+      }
+
+      function findAnswer(question) {
+        const normalizedQuestion = normalize(question);
+        if (/^(hi|hello|hey|good morning|good afternoon|good evening)$/.test(normalizedQuestion)) {
+          return knowledge.assistant.greeting;
+        }
+        if (/^(thanks|thank you|appreciate it)$/.test(normalizedQuestion)) {
+          return 'You’re welcome. Ask another question about Tech Frog Consulting whenever you’re ready.';
+        }
+
+        const ranked = knowledge.entries
+          .map(entry => scoreEntry(question, entry))
+          .sort((left, right) => right.score - left.score);
+        const accepted = ranked.filter(result => result.phraseMatch || result.overlap >= 2 || result.score >= 8);
+        if (!accepted.length) return knowledge.assistant.out_of_scope;
+
+        const answers = [accepted[0].entry.answer];
+        const isMultiPart = /\b(and|also|plus)\b|,/.test(normalizedQuestion);
+        if (
+          isMultiPart &&
+          accepted[1] &&
+          accepted[1].score >= 8 &&
+          accepted[1].score >= accepted[0].score - 4 &&
+          accepted[1].entry.id !== accepted[0].entry.id
+        ) {
+          answers.push(accepted[1].entry.answer);
+        }
+        return answers.join('\n\n');
+      }
+
+      async function ask(rawQuestion) {
+        if (busy) return;
+        const question = String(rawQuestion || '').trim().slice(0, 800);
+        if (!question) return;
+
+        addMessage('user', question);
+        input.value = '';
+        resizeInput();
+        setBusy(true);
+        const pending = addMessage('assistant', '', true);
+
+        try {
+          if (!knowledge) throw new Error('knowledge_unavailable');
+          const answer = findAnswer(question);
+          await new Promise(resolve => window.setTimeout(resolve, 140));
+          pending.bubble.textContent = answer;
+        } catch (_) {
+          pending.row.classList.add('error');
+          pending.bubble.textContent = 'The business information is temporarily unavailable.';
+        } finally {
+          setBusy(false);
+          input.focus();
+          scrollToLatest();
+        }
+      }
+
+      function resetChat() {
+        if (busy) return;
+        messages.replaceChildren();
+        document.body.classList.remove('chatting');
+        input.value = '';
+        resizeInput();
+        serviceStatus.textContent = knowledge ? 'Ready' : 'Business information unavailable';
+        input.focus();
+      }
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        void ask(input.value);
+      });
+
+      input.addEventListener('input', resizeInput);
+      input.addEventListener('keydown', event => {
+        if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+          event.preventDefault();
+          form.requestSubmit();
+        }
+      });
+      newChatButton.addEventListener('click', resetChat);
+
+      fetch('./knowledge.json', { cache: 'no-cache' })
+        .then(response => {
+          if (!response.ok) throw new Error('knowledge_load_failed');
+          return response.json();
+        })
+        .then(data => {
+          if (!data?.assistant || !Array.isArray(data?.entries) || !data.entries.length) {
+            throw new Error('knowledge_invalid');
+          }
+          knowledge = data;
+          setBusy(false);
+        })
+        .catch(() => {
+          disclosure.textContent = 'Business information is temporarily unavailable';
+          serviceStatus.textContent = 'Business information unavailable';
+          form.setAttribute('aria-busy', 'false');
+        });
+
+      resizeInput();
+    })();
+  </script>
+</body>
+</html>

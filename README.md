@@ -1,63 +1,36 @@
 # TechFrog.AI
 
-A dependency-free, static business-information chatbot for Tech Frog Consulting.
+Marketing website for Tech Frog’s custom offline AI systems for homes and businesses.
 
-## What this is
+## Run locally
 
-This is deliberately not a generative-AI chatbot. It matches a visitor’s question against the approved answers in `knowledge.json` and refuses questions outside that scope.
+No package dependencies or build step are required. From the repository root:
 
-- No API key
-- No login or authorization popup
-- No external JavaScript, fonts, analytics, or AI service
-- No per-message cost
-- No links or redirects to another website
+```sh
+python3 -m http.server 4173
+```
 
-That control has a tradeoff: the chatbot cannot invent new answers, reason beyond the stored information, or reliably handle every unusual phrasing. For this use case, that limitation is the safety feature.
+Open http://127.0.0.1:4173.
 
 ## Files
 
-- `index.html` — interface and matching logic
-- `knowledge.json` — approved business questions and answers
-- `assets/techfrog-ai.jpg` — supplied brand artwork
-- `CNAME` — custom domain declaration for branch-based GitHub Pages
+- `index.html`: page content, metadata, FAQ, process, and inquiry links.
+- `styles.css`: responsive layouts, typography, aqua accent, logo framing, and reduced-motion support.
+- `script.js`: mobile navigation and email copying.
+- `assets/`: owner-supplied TechFrog.AI logo and self-hosted fonts.
+- `CNAME`: existing `techfrog.ai` custom-domain declaration.
+- `.nojekyll`: existing marker for direct static publication.
 
-## Update an answer
+## Publishing
 
-Edit the relevant entry in `knowledge.json`. Each entry contains:
+This repository uses GitHub Pages with `main` and the repository root. Keep the existing `CNAME` and `.nojekyll` files when updating the website. Public metadata uses `https://techfrog.ai/`.
 
-- `aliases`: common ways visitors ask the question
-- `keywords`: words used to recognize less exact phrasing
-- `answer`: the only response the chatbot may return for that topic
+## Contact and engagement
 
-Everything in `knowledge.json` is publicly downloadable by site visitors. Never place passwords, private client information, API keys, internal notes, or nonpublic claims in it. Keep the JSON syntax valid; a missing quote or trailing comma will prevent the knowledge file from loading.
+All inquiries go to `chat@techfrog.ai` with subject `Offline AI System Inquiry` and the agreed three-line inquiry template. The introductory conversation is free, and confidential information is reserved until after an NDA.
 
-## Test locally
+The paid assessment is **The AI Design Brief — $1,500**. Its full scope and terms appear on the page.
 
-Run a small local web server from this folder:
+## Brand assets
 
-```bash
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000`. Opening `index.html` directly from the filesystem will not reliably load `knowledge.json` because browsers restrict local file requests.
-
-## Publish with GitHub Pages
-
-1. Create an empty public GitHub repository.
-2. Push the contents of this folder to the repository root.
-3. In the repository, open **Settings → Pages**.
-4. Choose **Deploy from a branch**, select `main`, select `/ (root)`, and save.
-5. Verify the temporary GitHub Pages address works before changing DNS.
-6. In **Settings → Pages → Custom domain**, enter `techfrog.ai` and save. The included `CNAME` file does not replace this settings step.
-7. At the DNS provider, replace the current apex `A` records with GitHub Pages’ records:
-
-```text
-@  A  185.199.108.153
-@  A  185.199.109.153
-@  A  185.199.110.153
-@  A  185.199.111.153
-```
-
-8. After GitHub finishes its DNS check and certificate provisioning, enable **Enforce HTTPS**.
-
-Do not switch the DNS records until the site works at its temporary GitHub Pages address. That avoids turning a controlled migration into preventable downtime.
+The supplied silver/aqua TechFrog.AI logo is retained unchanged. CSS frames display the complete lockup or frog symbol. Fonts are hosted locally.
